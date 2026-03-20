@@ -1,0 +1,260 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #f0f4f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    position: relative;
+    width: 350px;
+    padding: 40px;
+    background: linear-gradient(160deg, #0c496e 20%, #041a24 100%);
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Efek tulisan agak bersinar */
+}
+
+h1 span {
+    color: #ffd700; /* Ini warna emas, kalau biru biasanya cocok sama putih atau perak (#e0e0e0) */
+    font-size: 2.2rem;
+}
+
+p {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.message {
+    margin-top: 20px;
+    line-height: 1.6;
+    font-style: normal;
+}
+
+.footer {
+    margin-top: 30px;
+    font-weight: bold;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 15px;
+}
+/* --- Tambahan untuk Ikon dan Pola --- */
+
+/* Bikin content-nya di atas pola */
+.content {
+    position: relative;
+    z-index: 2; /* Biar tulisan nggak ketutupan pola */
+}
+
+/* Styling Ikon Atas (Emoji) */
+.icon-top {
+    font-size: 2rem;
+    margin-top: 150px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Jarak antar emoji */
+}
+
+/* --- Atur Lentera biar memenuhi atas --- */
+/* Di file style.css */
+.top-lanterns {
+    position: absolute;
+    top: -190px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center; /* Ini biar lenteranya tepat di tengah atas */
+    padding: 0;
+    z-index: 10;
+}
+
+.lantern {
+    width: 450px; /* Boleh digedein dikit karena cuma sendirian di tengah */
+    height: auto;
+    filter: drop-shadow(0 0 10px gold);
+    animation: swing 3s ease-in-out infinite alternate;
+    transform-origin: top center;
+}
+
+/* --- Atur Masjid biar di tengah --- */
+.masjid-wrapper {
+    margin-top: 5px; /* Kasih jarak dari atas kartu */
+    margin-bottom: 10px;
+}
+
+.icon-masjid {
+    width: 200px; /* Ukuran masjidnya */
+    height: auto;
+}
+
+/* --- Atur Judul & Ketupat Samping --- */
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.icon-ketupat-side {
+    width: 55px; /* Ketupat di samping kecil aja */
+    height: auto;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* Animasi Ayunan Lentera */
+@keyframes swing {
+    from { transform: rotate(-5deg); }
+    to { transform: rotate(5deg); }
+}
+
+/* Animasi Mengambang Ketupat */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Biar semua ikon/gambar nggak 'jebol' keluar kartu */
+.card img {
+    max-width: 100%; /* Ikon nggak akan lebih lebar dari kartu */
+    height: auto;    /* Biar nggak gepeng */
+    display: block;  /* Biar posisinya rapi */
+    margin: 0 auto;  /* Biar otomatis di tengah */
+}
+
+/* --- AMANKAN TOMBOL --- */
+#btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; /* Jarak dari atas layar */
+    margin-bottom: 20px; /* Jarak dari kartu */
+    width: 100%;
+}
+
+#open-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #ffd700, #ff8800);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+#open-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 25px rgba(255, 215, 0, 0.4);
+}
+
+.card {
+    display: none; /* Kita pakai cara ini lagi, tapi kita benerin isinya */
+    position: relative;
+    width: 350px;
+    margin: 20px auto; /* Biar kartu di tengah dan ada jarak dari atas */
+    background: linear-gradient(135deg, #0c496e 20%, #041a24 100%);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    overflow: visible; /* <--- GANTI INI JADI VISIBLE biar lenteranya gak kepotong */
+}
+
+/* KUNCI BIAR GAK GEPENG */
+.top-lanterns {
+    position: absolute;
+    top: -135px; /* Tarik mentok ke atas */
+    left: 50%;
+    transform: translateX(-50%); /* Teknik biar lentera raksasa pas di tengah */
+    width: 350px; 
+    z-index: 10;
+}
+
+.lantern {
+    width: 100%; /* Dia bakal ngikutin lebar top-lanterns (350px) */
+    height: auto; /* HARUS AUTO biar gak gepeng */
+    display: block;
+}
+
+/* --- EFEK BINTANG KELAP-KELIP --- */
+
+.pattern-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    
+    /* Kita bikin 3 lapis bintang dengan ukuran beda-beda biar natural */
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.4) 1px, transparent 10px),
+        radial-gradient(white, rgba(255,255,255,.3) 1.2px, transparent 15px),
+        radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 20px);
+    
+    /* ANGKA DI BAWAH INI DIPERKECIL BIAR BINTANGNYA RAPAT/BANYAK */
+    background-size: 150px 150px, 250px 250px, 200px 200px;
+    
+    /* Posisi geser dikit tiap lapis biar gak tumpang tindih */
+    background-position: 0 0, 40px 60px, 100px 150px;
+    
+    animation: twinkle 4s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 0.7; /* Naikkan sedikit biar lebih terang bintangnya */
+    z-index: 2;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.02); }
+}
+
+/* --- CETAKAN KEMBANG API (HIDDEN DULU) --- */
+#fireworks-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; /* Biar gak ngehalangi klik mouse yang sebenarnya */
+    z-index: 5; /* Di atas bintang, di bawah teks */
+}
+
+.firework-particle {
+    position: absolute;
+    width: 6px; /* Ukuran percikan */
+    height: 6px;
+    border-radius: 50%;
+    opacity: 0; /* Awalnya gak keliatan */
+    
+    /* Panggil Animasi Ledakan */
+    animation: explode 1s ease-out forwards;
+}
+
+/* ANIMASI LEDAKAN (Meledak + Menghilang) */
+@keyframes explode {
+    0% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(0); /* Dari satu titik kecil */
+    }
+    100% { 
+        opacity: 0; 
+        /* Meledak ke arah acak, diatur pake JS */
+        transform: translate(var(--tx), var(--ty)) scale(1); 
+    }
+}

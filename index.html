@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Idul Fitri</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="btn-wrapper" style="text-align: center; margin-top: 100px;">
+        <button id="open-btn" type="button">Buka Kartu dari Salwaulia ✨</button>
+    </div>
+
+    <div class="card" id="myCard" style="display: none;">
+        <div class="pattern-overlay"></div>
+        
+        <div id="fireworks-container"></div>
+
+        <div class="top-lanterns">
+            <img src="lentera.svg" class="lantern" alt="lentera">
+        </div>
+
+        <div class="content">
+            <div class="title-section">
+                <img src="ketupat.svg" class="icon-ketupat-side" alt="ketupat">
+                <div>
+                    <div class="icon-top">
+                        <span>🌙</span> <span>🕌</span> <span>⭐</span>
+                    </div>
+                    <h1>Selamat Hari Raya <br><span>Idul Fitri 1447 H</span></h1>
+                </div>
+                <img src="ketupat.svg" class="icon-ketupat-side" alt="ketupat">
+            </div>
+
+            <div class="masjid-wrapper">
+                <img src="masjid.svg" class="icon-masjid" alt="masjid">
+            </div>
+
+            <p class="arabic-text">تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ تَقَبَّلْ يَا كَرِيْمُ</p>
+            
+            <p class="message">Cahaya Syawal tahun ini telah bersinar terang. Mari kita sambut hari raya kemenangan ini dengan saling memaafkan dan menebar kebaikan! Mohon Maaf Lahir dan Batin atas segala Khilaf 🙏</p>
+            
+            <div class="footer">Dari: Salwa dan Keluarga</div>
+        </div> 
+    </div>
+
+    <script>
+        const tombol = document.getElementById('open-btn');
+        const kartu = document.getElementById('myCard');
+        const wrapper = document.getElementById('btn-wrapper');
+        const fwContainer = document.getElementById('fireworks-container');
+
+        // Logika Buka Kartu
+        if (tombol) {
+            tombol.onclick = function() {
+                kartu.style.setProperty('display', 'block', 'important');
+                wrapper.style.display = 'none';
+            };
+        }
+
+        // Logika KEMBANG API INTERAKTIF
+        kartu.addEventListener('click', function(e) {
+            const rect = kartu.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            createFireworkExplosion(x, y);
+        });
+
+        function createFireworkExplosion(x, y) {
+            const particleCount = 30;
+            const colors = ['#FFD700', '#FF4500', '#FF00FF', '#00FF7F', '#1E90FF'];
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'firework-particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+                particle.style.boxShadow = `0 0 10px ${color}`;
+
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 80 + 40;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+
+                fwContainer.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+        }
+    </script>
+
+</body>
+</html>
